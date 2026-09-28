@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+    <title>TRAD.ita</title>
+    <style>
+        :root {
+            --ink: #102b45;
+            --cream: #f7f1e7;
+            --red: #a83922;
+            --gold: #a46a2a
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lora', serif;
+            color: #152638;
+            background: #fff
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 9;
+            background: rgba(255, 255, 255, .96);
+            padding: 16px 4vw;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--ink);
+            margin-right: auto; /* Spinge i link del menu verso destra */
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px; /* Regola questo valore (es. 50px o 70px) per rimpicciolire o ingrandire il logo nel menu */
+            width: auto;
+            border-radius: 4px; /* Ammorbidisce leggermente gli angoli della foto */
+        }
+        .brand i {
+            color: var(--red);
+            font-style: normal
+        }
+
+        nav a {
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 15px
+        }
+
+        .hero,
+        .section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 4vw 40px
+        }
+
+        .hero h1 {
+
+            font-family: 'Playfair Display', serif; /* Titolo gigante più rustico */
+            font-size: clamp(38px, 6vw, 76px);
+            font-weight: 900;
+            margin: 12px 0 0;
+            color: var(--ink)
+        }
+
+        .hero h1 i {
+            color: var(--red);
+            font-style: normal
+        }
+
+        .kicker {
+            font-size: clamp(16px, 2vw, 22px);
+            font-weight: 900;
+            letter-spacing: .06em
+        }
+
+        .lead {
+            font-size: clamp(18px, 2.5vw, 32px);
+            line-height: 1.15;
+            font-weight: 900;
+            max-width: 1050px;
+            margin: 14px 0
+        }
+
+        .copy {
+            font-size: clamp(16px, 1.5vw, 20px);
+            line-height: 1.45;
+            font-weight: 700;
+            max-width: 1050px
+        }
+
+        .photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 24px 0;
+            border-radius: 4px
+        }
+
+        .section {
+            border-top: 8px solid var(--cream)
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif; /* Titoli delle sezioni stile insegna */
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            color: var(--ink);
+            margin: 8px 0 12px
+        }
+
+        .section h3 {
+            font-size: clamp(20px, 3vw, 30px);
+            line-height: 1.15;
+            margin: 8px 0 14px;
+            color: var(--red)
+        }
+
+        .statement {
+            font-size: clamp(20px, 3vw, 30px);
+            line-height: 1.2;
+            font-weight: 900;
+            background: var(--cream);
+            padding: 20px;
+            margin: 20px 0
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px
+        }
+
+        .card {
+            background: var(--cream);
+            padding: 24px
+        }
+
+        .card h4 {
+            font-size: 30px;
+            margin: 0 0 10px
+        }
+
+        .card p {
+            font-size: 22px;
+            line-height: 1.3;
+            font-weight: 650;
+            margin: 0
+        }
+
+        .contact {
+            background: var(--ink);
+            color: #fff
+        }
+
+        .contact h2,
+        .contact h3 {
+            color: #fff
+        }
+
+        .contact .copy {
+            color: #fff
+        }
+
+        footer {
+            padding: 35px 4vw;
+            background: #0b1c2c;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center
+        }
+
+        /* CSS Food Trucks & Popup */
+        /* Effetto Popup a tutto schermo */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 90vh;
+            margin-top: 5vh;
+            border-radius: 5px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close:hover {
+            color: #bbb;
+        }
+
+        @media(max-width:720px) {
+            nav {
+                gap: 12px;
+                padding: 12px 18px
+            }
+
+            .brand {
+                font-size: 29px;
+                width: 100%
+            }
+
+            nav a {
+                font-size: 14px
+            }
+
+            .hero,
+            .section {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .photo {
+                margin: 20px 0
+            }
+
+            .copy {
+                font-size: 23px
+            }
+
+            .lead {
+                font-size: 34px
+            }
+
+            .statement {
+                font-size: 30px
+            }
+        }
+
+        /* CSS per le icone social nel footer */
+        .social-icons {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .social-icons a {
+            color: #fff;
+            font-size: 28px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--red); /* Diventa rosso al passaggio del mouse */
+            transform: scale(1.15); /* Si ingrandisce leggermente */
+        }
+
+
+        /* CSS per il contatto Email */
+        .email-link {
+            margin-top: 20px;
+            font-size: clamp(18px, 2vw, 24px);
+        }
+        .email-link a {
+            color: #fff;
+            text-decoration: underline;
+            text-decoration-color: var(--red);
+            text-underline-offset: 4px;
+            transition: color 0.3s ease;
+        }
+        .email-link a:hover {
+            color: var(--red);
+        }
+        .email-link i {
+            margin-right: 10px;
+            color: var(--red);
+        }
+
+    </style>
+
+    <script>
+        // Apre il popup e carica l'immagine
+        function openModal(imageSrc) {
+            document.getElementById('imageModal').style.display = "block";
+            document.getElementById('modalImage').src = imageSrc;
+        }
+
+        // Chiude il popup cliccando sulla "X"
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        // Chiude il popup se clicchi fuori dall'immagine
+        window.onclick = function(event) {
+            let modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <nav>
+        
+        <a href="#home" class="brand">
+            <img src="assets/immagine.png" alt="Logo TRAD.ita" class="logo-img">
+        </a>
+        <a href="#home">HOME</a>
+
+        <a href="#pub">PUBS</a>
+
+        <a href="#market">MARKETS</a><a href="#shops">SHOPS</a><a href="#books">BOOKS</a>
+        
+        <a href="#foundation">FOUNDATION</a>
+
+        <a href="#food-trucks">FOOD TRUCKS</a>
+
+        <a href="#story">OUR STORY</a>
+
+        
+        
+        <a href="#contact">CONTACT</a>
+        
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>TRAD.<i>ita</i></h1>
+        <div class="kicker">TRADITION • CULTURE • FUTURE</div>
+        <h3>Traditions that create new opportunities.</h3>
+        <p class="lead">Food, markets, pubs, independent shops, books and community — brought together in one living
+            project.</p><img class="photo" src="assets/home.png" alt="TRAD.ita HOME">
+        <p class="copy">TRAD.ita connects the identity of traditional places with new reasons for people to meet, shop,
+            eat, learn and return. We bring together local producers, independent traders, makers, traditional pubs,
+            specialist food formats, books and community projects — without taking away the character that makes each
+            place unique.</p>
+        <div class="statement">We don’t replace tradition. We bring it back to life.</div>
+    </section>
+
+    <section id="pub" class="section">
+        <h2>PUBS</h2>
+        <h3>The pub doesn’t change its soul.</h3>
+        <p class="lead">A pub is more than a building. It is part of the identity of a village, a neighbourhood and a
+            community.</p><img class="photo" src="assets/pub.png" alt="TRAD.ita PUBS">
+        <p class="copy">Traditional pubs can become active community destinations throughout more of the day without
+            losing what makes them pubs. TRAD.ita combines the existing pub with carefully organised market activity,
+            local food, independent producers, makers and community experiences.</p>
+        <div class="statement">Protect the identity. Add new reasons to return.</div>
+    </section>
+
+    <section id="market" class="section">
+        <h2>MARKETS</h2>
+        <h3>Local life, from morning to evening.</h3>
+        <p class="lead">Fresh food and producers by day; makers, vintage, culture and community life in the evening.</p>
+        <img class="photo" src="assets/market.png" alt="TRAD.ita MARKETS">
+        <p class="copy">The market is not an event added on top of a place. It becomes part of its daily rhythm: food,
+            producers, traders, makers and people meeting in one organised space.</p>
+        <div class="statement">Day and evening. One place, two complementary lives.</div>
+    </section>
+
+    <section id="shops" class="section">
+        <h2>SHOPS</h2>
+        <h3>Food that is sold, prepared, explained and experienced.</h3>
+        <p class="lead">Specialist shop formats built around clear products, simple service and strong identity.</p><img
+            class="photo" src="assets/shops.png" alt="TRAD.ita SHOPS">
+        <p class="copy">Products, books, craftsmanship and the identity of the territory. The shop is a place to buy,
+            discover and meet — keeping quality, people and local character visible.</p>
+        <div class="statement">La tradizione di Taranto, ogni giorno, a portata di mano.</div>
+    </section>
+
+    <section id="books" class="section">
+        <h2>BOOKS</h2>
+        <h3>The ideas behind the project, in print.</h3>
+        <p class="lead">Stories, experience, practical ideas and the vision of TRAD.ita gathered into one editorial
+            collection.</p><img class="photo" src="assets/books.png" alt="TRAD.ita BOOKS">
+        <p class="copy">The books record the ideas behind the project and turn experience into something that can be
+            shared, discussed and developed.</p>
+        <div class="statement">Una vita diventa racconto. Un racconto diventa progetto.</div>
+    </section>
+
+    <section id="foundation" class="section">
+        <h2>FOUNDATION</h2>
+        <h3>A foundation for community renewal.</h3>
+        <p class="lead">Status: Foundation in formation.</p><img class="photo" src="assets/foundation.png"
+            alt="TRAD.ita FOUNDATION">
+        <p class="copy">The foundation is being developed to support people, places and communities around the wider
+            TRAD.ita vision: community heritage, renewal of traditional social places, pathways to work and
+            participation, inclusion and practical opportunity.</p>
+        <div class="statement">Community, opportunity and heritage.</div>
+    </section>
+
+
+    <section id="food-trucks" class="section">
+        <h2>FOOD TRUCKS</h2>
+        <h3>Italian food everywhere.</h3>
+        <p class="lead">  Click on the poster to see our options.</p>
+        
+        <!-- Singola immagine cliccabile. Usa la classe "photo" per i bordi arrotondati e i margini del sito originale -->
+        <img class="photo" src="assets/Manifesto dei Food Truck Italiani.png" alt="Manifesto Food Trucks TRAD.ita" style="cursor: pointer; transition: transform 0.2s;" onclick="openModal('assets/Manifesto dei Food Truck Italiani.png')" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        
+        <div class="statement">Tradition on wheels — a taste of Italy, anywhere.</div>
+    </section>
+
+    <!-- Finestra Modale Nascosta -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+
+    <section id="story" class="section">
+        <h2>OUR STORY</h2>
+        <h3>Tradition can create the future.</h3>
+        <p class="lead">TRAD.ita grew from years of practical experience in food, retail, hospitality, markets and
+            community life in Italy and the United Kingdom.</p><img class="photo" src="assets/story.png"
+            alt="TRAD.ita OUR STORY">
+        <p class="copy">The objective is not nostalgia. It is to use what already has meaning and give it a practical
+            future. Respect the place. Keep things practical. Create opportunity. Build community. Grow carefully.</p>
+        <div class="statement">One project. Many years of experience.</div>
+    </section>
+
+    <section id="taranto" class="section">
+        <h2>TARANTO</h2>
+        <h3>Everything begins from the roots.</h3>
+        <p class="lead">Taranto, its old city, its sea, its markets and its community are part of the journey and its
+            destination.</p><img class="photo" src="assets/taranto.png" alt="TRAD.ita TARANTO">
+        <p class="copy">The route brings together places, people, shops, markets, pubs, books and community.</p>
+        <div class="statement">Tutto parte da Taranto e tutto ritorna a Taranto.</div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <h2>CONTACT</h2>
+        <h3>Talk to TRAD.ita</h3>
+        <p class="copy">Interested in a pub, market, specialist shop, producer opportunity, book, foundation project or
+            collaboration? Contact TRAD.ita and choose the subject that best describes your enquiry.</p>
+        <!-- Blocco Email con icona -->
+        <p class="copy email-link">
+            <i class="fas fa-envelope"></i> Contact us at <a href="mailto:trad.ita.official@gmail.com">trad.ita.official@gmail.com</a>
+        </p>
+    </section>
+
+    <footer>
+        TRAD.ita — Tradition • Culture • Future<br>
+        Pubs · Markets · Shops · Books · Foundation · Our Story · Contact
+        
+        <!-- Icone Social -->
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61594271830330" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/trad.ita.official/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@trad.ita" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
